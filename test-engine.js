@@ -1,26 +1,34 @@
-require("dotenv").config({ path: ".env.local" });
-const { YoutubeTranscript } = require("youtube-transcript");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { YoutubeTranscript } = require("youtube-transcript");
+require("dotenv").config({ path: ".env.local" });
 
-async function testEngines() {
-  console.log("1. 테스트 비디오 자막 추출 시도 (도파민 영상 예시)...");
+async function test() {
+  const apiKey = process.env.GEMINI_API_KEY;
+  const videoId = "ggmCuz1KucM"; // 호엉이님이 입력하셨던 그 영상!
+
+  console.log("🚀 Testing logic for video:", videoId);
+  console.log("🔑 API Key check:", apiKey ? "OK" : "MISSING");
+
   try {
-    // A random known video with Korean/English captions
-    const videoId = "zpOULjyy-n8"; // Example: "GoPro: You in 4K"
+    console.log("🎤 Fetching transcript...");
     const transcript = await YoutubeTranscript.fetchTranscript(videoId);
-    const text = transcript.slice(0, 5).map(t => t.text).join(" ");
-    console.log("✅ 자막 엔진 정상 작동 확인! 샘플 자막:", text);
+    const text = transcript.map(t => t.text).join(" ");
+    console.log("✅ Transcript fetched! length:", text.length);
 
-    console.log("\n2. Gemini AI 요약 엔진 테스트...");
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const response = await model.generateContent("너는 누구야? 1줄로 대답해봐.");
-    console.log("✅ AI 엔진 정상 작동 확인! 대답:", response.response.text().trim());
+
+    console.log("🧠 Asking Gemini to refine...");
+    const prompt = `다음 유튜브 자막을 자청의 유튜브 추출기 스타일로 요약해줘:\n\n${text.slice(0, 5000)}`;
+    const result = await model.generateContent(prompt);
     
-    console.log("\n🚀 모든 백엔드 엔진 100% 정상 작동 검증 완료!");
-  } catch (err) {
-    console.error("❌ 에러 발생:", err);
+    console.log("✨ Gemini Response Success!");
+    console.log("--- RESULT PREVIEW ---");
+    console.log(result.response.text().slice(0, 500) + "...");
+    
+  } catch (error) {
+    console.error("❌ TEST FAILED:", error);
   }
 }
 
-testEngines();
+test();

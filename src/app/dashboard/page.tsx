@@ -75,9 +75,13 @@ export default function Dashboard() {
         data.summaries.forEach((s: any) => tabs[s.videoId] = "ai");
         setActiveTab(tabs);
       } else {
-        alert(data.error);
+        console.error("API Error Response:", data);
+        alert("🚨 에러 발생: " + (data.error || "알 수 없는 오류"));
       }
-    } catch (e) { console.error(e); }
+    } catch (e: any) { 
+      console.error("Fetch Exception:", e); 
+      alert("🌐 서버 연결 실패: " + e.message);
+    }
     finally { setIsSummarizing(false); }
   };
 
