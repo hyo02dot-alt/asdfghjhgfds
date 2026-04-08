@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 호엉이 AI 지식 비서 v2 (Ho-eong Assistant)
 
-## Getting Started
+**유튜브 자막을 읽고 고밀도 지식 아티클로 정제하는 지능형 대시보드입니다.**
 
-First, run the development server:
+## 🌐 바로가기 (Vercel Deployment)
+**[https://asdfghjhgfds.vercel.app](https://asdfghjhgfds.vercel.app)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ 주요 기능
+- **고밀도 지식 정제:** 자청 유튜브 추출기 스타일의 '친절하고 날카로운' 아티클 생성.
+- **정찰 채널 자동화:** 내가 구독한 채널들의 최신 영상을 원터치로 일괄 분석.
+- **수동 URL 분석:** 특정 영상 링크만으로 즉시 지식 추출 가능.
+- **다차원 정보 탐색:** AI 요약, 전체 자막, 영상 상세 정보를 탭 하나로 전환.
+- **퍼스널 페르소나:** 나만의 분석 스타일(System Prompt) 영구 저장 및 적용.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠 기술 스택
+- **Framework:** Next.js 14+ (App Router)
+- **AI Engine:** Google Gemini 1.5 Flash
+- **API:** YouTube Data API v3
+- **Auth:** NextAuth.js (Google Account Integration)
+- **Visuals:** Framer Motion (Smooth UI), Lucide Icons, Clean White Theme
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🚀 시작하기
+1. Google 로그인을 통해 본인의 유튜브 구독 목록을 연동합니다.
+2. 원하는 채널을 '정찰 목록'에 추가합니다.
+3. [오늘의 지식 정제 시작] 버튼을 눌러 아티클을 생성합니다.
