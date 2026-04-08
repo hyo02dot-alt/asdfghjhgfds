@@ -5,9 +5,7 @@ import { google } from "googleapis";
 
 export async function GET(req: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    
-    // @ts-ignore
+    const session: any = await getServerSession(authOptions);
     if (!session || !session.accessToken) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

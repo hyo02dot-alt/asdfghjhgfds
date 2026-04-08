@@ -6,8 +6,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export async function POST(req: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    // @ts-ignore
+    const session: any = await getServerSession(authOptions);
     if (!session || !session.accessToken) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const { videoId, channelIds, manualUrl, customPrompt } = await req.json();
